@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <p class="eyebrow">Company Portal</p>
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Sign in with your employee account.</p>
+
+      <div class="alert success" id="signup-success" hidden>Account created successfully. You can log in now.</div>
+      <div class="alert error" id="login-invalid" hidden>Invalid email or password.</div>
+      <div class="alert error" id="login-missing" hidden>Email and password are required.</div>
+      <div class="alert error" id="login-server" hidden>Server error during login.</div>
+
+      <form action="OLDEmployee" method="post" class="auth-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit" class="primary-button">Login</button>
+      </form>
+
+      <p class="switch-text">Don't have an account?</p>
+      <a class="secondary-button" href="signup.html">Sign up</a>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+    document.getElementById("signup-success").hidden = params.get("success") !== "true";
+    document.getElementById("login-invalid").hidden = error !== "invalid";
+    document.getElementById("login-missing").hidden = error !== "missing";
+    document.getElementById("login-server").hidden = error !== "server";
+  </script>
+</body>
+</html>
